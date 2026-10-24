@@ -1,0 +1,355 @@
+/* ==========================================================================
+   Design System & Modern Glass Aesthetics
+   Matching the Reference UI: Cobalt Royal Blue, Porcleain Glass, Floating Pills
+   ========================================================================== */
+
+:root {
+  --primary: #2748f9;
+  --primary-hover: #1b37d8;
+  --primary-light: #eef2ff;
+  --primary-gradient: linear-gradient(145deg, #2848fa 0%, #4f6ff8 100%);
+  --primary-gradient-subtle: linear-gradient(180deg, rgba(39, 72, 249, 0.08) 0%, rgba(39, 72, 249, 0.02) 100%);
+  --primary-glow: rgba(39, 72, 249, 0.25);
+  
+  --bg-page: #f2f4fa;
+  --bg-page-gradient: radial-gradient(circle at 50% 0%, #ffffff 0%, #f0f2f9 45%, #e8ebf5 100%);
+  
+  --card-bg: rgba(255, 255, 255, 0.88);
+  --card-bg-solid: #ffffff;
+  --card-border: rgba(18, 24, 48, 0.08);
+  --card-border-hover: rgba(39, 72, 249, 0.3);
+  --card-shadow: 0 16px 40px -12px rgba(18, 24, 48, 0.07);
+  --card-shadow-hover: 0 24px 50px -12px rgba(39, 72, 249, 0.16);
+
+  --pill-bg: rgba(255, 255, 255, 0.95);
+  --pill-shadow: 0 10px 25px -4px rgba(18, 24, 48, 0.08), 0 4px 6px -2px rgba(18, 24, 48, 0.04);
+  
+  --text-main: #0c0f1d;
+  --text-muted: #5d667e;
+  --text-subtle: #8a94a6;
+  
+  --btn-dark: #0f121d;
+  --btn-dark-hover: #222738;
+  
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius-full: 9999px;
+
+  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+[data-theme="dark"] {
+  --primary: #4f6ff8;
+  --primary-hover: #3e5ee0;
+  --primary-light: #182042;
+  --primary-gradient: linear-gradient(145deg, #3756ff 0%, #5d7aff 100%);
+  --primary-gradient-subtle: linear-gradient(180deg, rgba(79, 111, 248, 0.14) 0%, rgba(79, 111, 248, 0.02) 100%);
+  --primary-glow: rgba(79, 111, 248, 0.35);
+
+  --bg-page: #0a0d16;
+  --bg-page-gradient: radial-gradient(circle at 50% 0%, #111728 0%, #0a0d16 60%, #06080e 100%);
+
+  --card-bg: rgba(18, 24, 42, 0.8);
+  --card-bg-solid: #12182b;
+  --card-border: rgba(255, 255, 255, 0.08);
+  --card-border-hover: rgba(79, 111, 248, 0.5);
+  --card-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.6);
+  --card-shadow-hover: 0 24px 50px -12px rgba(79, 111, 248, 0.28);
+
+  --pill-bg: rgba(24, 32, 54, 0.95);
+  --pill-shadow: 0 10px 25px -4px rgba(0, 0, 0, 0.5);
+
+  --text-main: #f1f4fd;
+  --text-muted: #9aa5bf;
+  --text-subtle: #626d85;
+
+  --btn-dark: #222b44;
+  --btn-dark-hover: #323d60;
+}
+
+/* Base Resets */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-page);
+  background-image: var(--bg-page-gradient);
+  color: var(--text-main);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--text-main);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-page);
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd3e8;
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* Animations */
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes floatGentleReverse {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.05);
+  }
+}
+
+.animate-float {
+  animation: floatGentle 5s ease-in-out infinite;
+}
+
+.animate-float-reverse {
+  animation: floatGentleReverse 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: floatGentle 5.5s ease-in-out 1.5s infinite;
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 clamp(24px, 4vw, 48px);
+}
+
+/* Section Header Badges (Matching Reference 2 & 3) */
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--primary);
+  letter-spacing: 0.03em;
+  margin-bottom: 12px;
+  text-transform: capitalize;
+}
+
+.section-badge-star {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.section-title {
+  font-size: 2.75rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 16px;
+  color: var(--text-main);
+}
+
+.section-subtitle {
+  font-size: 1.125rem;
+  color: var(--text-muted);
+  max-width: 680px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2rem;
+  }
+  .section-subtitle {
+    font-size: 1rem;
+  }
+}
+
+/* Glass Card Utility */
+.glass-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--card-shadow);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  border-color: var(--card-border-hover);
+  box-shadow: var(--card-shadow-hover);
+}
+
+/* Glass Pill Badge */
+.glass-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: var(--pill-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-main);
+  box-shadow: var(--pill-shadow);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  white-space: nowrap;
+  transition: all 0.25s ease;
+}
+
+.glass-pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px -6px rgba(39, 72, 249, 0.15);
+  border-color: rgba(39, 72, 249, 0.25);
+}
+
+/* Primary Pill Button */
+.btn-pill-dark {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 24px;
+  background: var(--btn-dark);
+  color: #ffffff;
+  border-radius: var(--radius-full);
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 20px -4px rgba(15, 18, 29, 0.25);
+}
+
+.btn-pill-dark:hover {
+  background: var(--btn-dark-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -6px rgba(15, 18, 29, 0.35);
+}
+
+.btn-pill-dark .btn-arrow-circle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.btn-pill-dark:hover .btn-arrow-circle {
+  transform: translateX(3px);
+  background: var(--primary);
+}
+
+/* Blue Accent Button */
+.btn-pill-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  background: var(--primary-gradient);
+  color: #ffffff;
+  border-radius: var(--radius-full);
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 10px 24px -6px var(--primary-glow);
+}
+
+.btn-pill-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px -6px var(--primary-glow);
+  filter: brightness(1.05);
+}
+
+/* Glass Outline Button */
+.btn-pill-glass {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  color: var(--text-main);
+  border-radius: var(--radius-full);
+  font-size: 0.95rem;
+  font-weight: 600;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.25s ease;
+}
+
+.btn-pill-glass:hover {
+  background: #ffffff;
+  border-color: rgba(39, 72, 249, 0.3);
+  color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: var(--card-shadow);
+}
